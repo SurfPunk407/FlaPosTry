@@ -12,9 +12,9 @@ def create_app():
     app = Flask(__name__)
     CORS(app)
 
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db.sqlite3"
-    #app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
-    # postgres://prettyprinted_render_example_user:11vq6k72GmFJazhVpz3pFUko50djVZT1@dpg-ceukdhmn6mpglqdb4avg-a.oregon-postgres.render.com/prettyprinted_render_example
+    #app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db.sqlite3"
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
+    
 
     db.init_app(app)
 
