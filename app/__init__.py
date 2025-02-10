@@ -1,0 +1,21 @@
+import os
+from dotenv import load_dotenv
+from flask import Flask 
+from .extensions import db
+from .routes import main
+from .models import User
+
+load_dotenv()
+
+def create_app():
+    app = Flask(__name__)
+
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db.sqlite3"
+    #app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
+    # postgres://prettyprinted_render_example_user:11vq6k72GmFJazhVpz3pFUko50djVZT1@dpg-ceukdhmn6mpglqdb4avg-a.oregon-postgres.render.com/prettyprinted_render_example
+
+    db.init_app(app)
+
+    app.register_blueprint(main)
+
+    return app
